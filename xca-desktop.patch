@@ -1,0 +1,18 @@
+diff -urN xca-0.5.1.orig/misc/xca.desktop xca-0.5.1/misc/xca.desktop
+--- xca-0.5.1.orig/misc/xca.desktop	2003-09-03 15:34:30.000000000 +0000
++++ xca-0.5.1/misc/xca.desktop	2004-09-15 12:06:45.931198832 +0000
+@@ -3,9 +3,11 @@
+ Name=X-CA
+ Type=Application
+ Comment=A graphical user interface for handling and issuing X.509 compliant Certificates
+-Comment[de]=Eine graphische Oberfläche zur Erstellung von X.509 konformen Zertifikaten
+-Comment[fi]=Graafinen X.509-varmenteiden hallintatyökalu
++Comment[de]=Eine graphische OberflĂ¤che zur Erstellung von X.509 konformen Zertifikaten
++Comment[fi]=Graafinen X.509-varmenteiden hallintatyĂśkalu
++Comment[pl]=GUI do obsługi certyfikatów
+ Exec=xca
+ Icon=xca.xpm
+ Terminal=false
+-Categories=Application;Utility;QT;
++Categories=Qt;Utility;
++# vi: encoding=utf-8
