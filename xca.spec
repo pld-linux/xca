@@ -11,7 +11,7 @@ License:	BSD
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/xca/%{name}-%{version}.tar.gz
 # Source0-md5:	27a401c6e3ed1e406a602c2e7f8c3f4e
-Patch:		%{name}-makefile.patch
+Patch0:		%{name}-makefile.patch
 URL:		http://www.hohnstaedt.de/xca.html
 BuildRequires:	db-cxx-devel
 BuildRequires:	db-devel
@@ -38,7 +38,7 @@ Pokazywane jest drzewo certyfikatów.
 
 %prep
 %setup -q
-#%%patch -p1
+#%%patch0 -p1
 
 %build
 %configure \
