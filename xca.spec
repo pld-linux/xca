@@ -1,13 +1,13 @@
 Summary:	A GUI for handling X509 certificates, RSA keys, PKCS#10 Requests
 Summary(pl):	GUI do obs³ugi certyfikatów X509, kluczy RSA, ¿±dañ PKCS#10
 Name:		xca
-Version:	0.3.2
-Release:	0
+Version:	0.4.2
+Release:	0.1
 Epoch:		1
 License:	BSD
 Group:		Applications/Communications
-Source0:	http://xca.sourceforge.net/src/%{name}-%{version}.tar.gz
-# Source0-md5:	cc467db420fb2eaa4838abc675346720
+Source0:	http://dl.sourceforge.net/xca/%{name}-%{version}.tar.gz
+# Source0-md5:	a0816d727a2590f4cbeba0a189651450
 Patch:		%{name}-makefile.patch
 URL:		http://www.hohnstaedt.de/xca.html
 BuildRequires:	db-cxx
