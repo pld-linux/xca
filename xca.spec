@@ -1,4 +1,5 @@
 Summary:	A GUI for handling X509 certificates, RSA keys, PKCS#10 Requests
+Summary(pl):	GUI do obs³ugi certyfikatów X509, kluczy RSA, ¿±dañ PKCS#10
 Name:		xca
 Version:	0.2.7
 Release:	1
@@ -7,8 +8,8 @@ License:	BSD
 Group:		Applications/Communications
 Source0:	http://xca.sourceforge.net/src/%{name}-%{version}.tar.gz
 URL:		http://www.hohnstaedt.de/xca.html
-BuildRequires:	openssl-devel
 BuildRequires:	db3-devel
+BuildRequires:	openssl-devel
 BuildRequires:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -24,6 +25,14 @@ certificate storage. It supports importing and exporting keys and PEM
 DER PKCS8 certificates, signing and revoking of PEM DER PKCS12, and
 the selection of x509v3 extensions. A tree view of certificates is
 presented.
+
+%description -l pl
+Graficzne CA to interfejs do zarz±dzania kluczami RSA i certyfikatami,
+tworzenia i podpisywania ¿±dañ PKCS#10. U¿ywa biblioteki OpenSSL i
+bazy Berkeley DB do przechowywania kluczy i certyfikatów. Obs³uguje
+importowanie i eksportowanie kluczy i certyfikatów PEM DER PKCS8,
+podpisywanie i anulowanie PEM DER PKCS12 oraz wybór rozszerzeñ x509v3.
+Pokazywane jest drzewo certyfikatów.
 
 %prep
 %setup -q
