@@ -1,5 +1,4 @@
 # TODO:
-# - patch makefiles to use CXXFLAGS from %%optflags
 # - add Categories to xca.desktop
 Summary:	A GUI for handling X509 certificates, RSA keys, PKCS#10 Requests
 Summary(pl):	GUI do obs³ugi certyfikatów X509, kluczy RSA, ¿±dañ PKCS#10
@@ -14,7 +13,6 @@ Source0:	http://dl.sourceforge.net/xca/%{name}-%{version}.tar.gz
 Patch0:		%{name}-makefile.patch
 URL:		http://www.hohnstaedt.de/xca.html
 BuildRequires:	db-cxx-devel
-BuildRequires:	db-devel
 BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -41,10 +39,10 @@ Pokazywane jest drzewo certyfikatów.
 #%%patch0 -p1
 
 %build
-%configure \
-	CPPFLAGS="-I%{_includedir}/qt" \
-	LDFLAGS="-L%{_libdir}"
-%{__make}
+%configure
+
+%{__make} \
+	CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -61,5 +59,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS README doc/*.html
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/xca
-%{_datadir}/applications/xca*
-%{_datadir}/pixmaps/xca*
+%{_desktopdir}/xca*
+%{_pixmapsdir}/xca*
