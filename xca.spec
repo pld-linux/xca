@@ -7,6 +7,7 @@ Epoch:		1
 License:	BSD
 Group:		Applications/Communications
 Source0:	http://xca.sourceforge.net/src/%{name}-%{version}.tar.gz
+# Source0-md5:	cc467db420fb2eaa4838abc675346720
 Patch:		%{name}-makefile.patch
 URL:		http://www.hohnstaedt.de/xca.html
 BuildRequires:	db-cxx
