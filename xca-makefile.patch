@@ -1,5 +1,5 @@
---- xca-0.3.0/Makefile.in.orig	Thu Mar  6 20:30:22 2003
-+++ xca-0.3.0/Makefile.in	Mon Apr 21 19:36:39 2003
+--- xca-0.3.1/Makefile.in.org	Wed Mar 19 15:50:44 2003
++++ xca-0.3.1/Makefile.in	Fri Apr 25 20:23:32 2003
 @@ -12,7 +12,8 @@
  CC=@CC@
  
@@ -10,7 +10,7 @@
  
  LDFLAGS=-Llib @LDFLAGS@
  LIBS=@LIBS@ -lxcadb -lpki
-@@ -45,7 +46,7 @@
+@@ -46,7 +47,7 @@
  $(OBJS): $(UI_H)
  
  %.o: %.cpp
@@ -19,17 +19,17 @@
  
  xca: $(OBJS) lib/libxcadb.a lib/libpki.a
  	$(CC) $(LDFLAGS) $(OBJS) $(LIBS) -o xca
-@@ -76,11 +77,10 @@
+@@ -78,11 +79,10 @@
  	#rm -rf ../$(TARGET)
  	
  install: xca
 -	strip xca
--	install -m 755 -o root -g root xca $(prefix)@prefix@/bin
--	install -m 755 -o root -g root -d $(prefix)@prefix@/share/xca
--	install -m 644 -o root -g root img/*.png $(prefix)@prefix@/share/xca
--	install -m 644 -o root -g root xca_??.qm $(prefix)@prefix@/share/xca
+-	install -m 755 -o root -d $(prefix)@prefix@/share/xca $(prefix)@prefix@/bin
+-	install -m 755 -o root xca $(prefix)@prefix@/bin
+-	install -m 644 -o root img/*.png $(prefix)@prefix@/share/xca
+-	install -m 644 -o root xca_??.qm $(prefix)@prefix@/share/xca
++	install -m 755 -d $(prefix)@prefix@/share/xca $(prefix)@prefix@/bin
 +	install -m 755 xca $(prefix)@prefix@/bin
-+	install -m 755 -d $(prefix)@prefix@/share/xca
 +	install -m 644 img/*.png $(prefix)@prefix@/share/xca
 +	install -m 644 xca_??.qm $(prefix)@prefix@/share/xca
  	
