@@ -1,20 +1,20 @@
 Summary:	A GUI for handling X509 certificates, RSA keys, PKCS#10 Requests
 Summary(pl):	GUI do obs³ugi certyfikatów X509, kluczy RSA, ¿±dañ PKCS#10
 Name:		xca
-Version:	0.2.7
+Version:	0.3.0
 Release:	1
 Epoch:		1
 License:	BSD
 Group:		Applications/Communications
 Source0:	http://xca.sourceforge.net/src/%{name}-%{version}.tar.gz
+Patch:		%{name}-makefile.patch
 URL:		http://www.hohnstaedt.de/xca.html
-BuildRequires:	db3-devel
+BuildRequires:	db-devel
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
-%define		_sysconfdir	/etc/X11/GNOME
 %define		_mandir		%{_prefix}/man
 
 %description
@@ -36,6 +36,7 @@ Pokazywane jest drzewo certyfikatów.
 
 %prep
 %setup -q
+%patch -p1
 
 %build
 %configure \
@@ -45,15 +46,16 @@ Pokazywane jest drzewo certyfikatów.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT/{%{_bindir},%{_datadir}/xca}
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	prefix=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS README
+%doc AUTHORS README doc/*.html
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/xca
