@@ -11,6 +11,7 @@ Source0:	http://dl.sourceforge.net/xca/%{name}-%{version}.tar.gz
 # Source0-md5:	24e0289c189b8db2f1f15a4ddac1b1c3
 Patch0:		%{name}-misc.patch
 Patch1:		%{name}-desktop.patch
+Patch2:		%{name}-qfont.patch
 URL:		http://www.hohnstaedt.de/xca.html
 BuildRequires:	db-cxx-devel
 BuildRequires:	openssl-devel >= 0.9.7d
@@ -38,6 +39,7 @@ Pokazywane jest drzewo certyfikatów.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 

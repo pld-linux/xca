@@ -1,0 +1,11 @@
+--- xca-0.5.0/widgets/clicklabel.cpp.qfont	2003-11-26 23:03:18.000000000 +0100
++++ xca-0.5.0/widgets/clicklabel.cpp	2004-06-04 22:38:46.676136190 +0200
+@@ -58,7 +58,7 @@
+ ClickLabel::ClickLabel( QWidget* parent,  const char* name, WFlags f )
+ 	:QLabel( parent, name, f )
+ {
+-	QFont font( font() );
++	QFont font;
+ 	font.setBold(true);
+ 	setFont( font );
+ 	setFrameShape( QLabel::Panel );
