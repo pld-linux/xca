@@ -9,6 +9,7 @@ Group:		Applications/Communications
 Source0:	http://xca.sourceforge.net/src/%{name}-%{version}.tar.gz
 Patch:		%{name}-makefile.patch
 URL:		http://www.hohnstaedt.de/xca.html
+BuildRequires:	db-cxx
 BuildRequires:	db-devel
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	qt-devel
