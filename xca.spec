@@ -9,7 +9,7 @@ Group:		Applications/Communications
 Source0:	http://xca.sourceforge.net/src/%{name}-%{version}.tar.gz
 URL:		http://www.hohnstaedt.de/xca.html
 BuildRequires:	db3-devel
-BuildRequires:	openssl-devel
+BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
