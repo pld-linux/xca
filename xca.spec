@@ -3,14 +3,14 @@
 Summary:	A GUI for handling X509 certificates, RSA keys, PKCS#10 Requests
 Summary(pl):	GUI do obs³ugi certyfikatów X509, kluczy RSA, ¿±dañ PKCS#10
 Name:		xca
-Version:	0.4.5
+Version:	0.4.6
 Release:	0.1
 Epoch:		1
 License:	BSD
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/xca/%{name}-%{version}.tar.gz
-# Source0-md5:	27a401c6e3ed1e406a602c2e7f8c3f4e
-Patch0:		%{name}-makefile.patch
+# Source0-md5:	3defe69788b9e0eb738f374143be6e12
+Patch0:		%{name}-misc.patch
 URL:		http://www.hohnstaedt.de/xca.html
 BuildRequires:	db-cxx-devel
 BuildRequires:	openssl-devel >= 0.9.7c
@@ -36,20 +36,29 @@ Pokazywane jest drzewo certyfikatów.
 
 %prep
 %setup -q
-#%%patch0 -p1
+%%patch0 -p1
 
 %build
-%configure
 
-%{__make} \
-	CFLAGS="%{rpmcflags}"
+LDFLAGS="%{rpmldflags}" \
+CFLAGS="%{rpmcflags}" \
+CXXFLAGS="%{rpmcflags}" \
+FFLAGS="%{rpmcflags}" \
+%{?__cc:CC="%{__cc}"} \
+%{?__cxx:CXX="%{__cxx}"} \
+prefix="%{_prefix}" \
+./configure 
+
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/xca}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/xca,%{_desktopdir}}
 
 %{__make} install \
-	prefix=$RPM_BUILD_ROOT
+	destdir=$RPM_BUILD_ROOT
+	
+#mv $RPM_BUILD_ROOT%{_datadir}/applications/* $RPM_BUILD_ROOT%{_desktopdir}/
 
 %clean
 rm -rf $RPM_BUILD_ROOT
