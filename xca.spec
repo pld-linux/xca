@@ -1,23 +1,23 @@
+# TODO:
+# - patch makefiles to use CXXFLAGS from %%optflags
+# - add Categories to xca.desktop
 Summary:	A GUI for handling X509 certificates, RSA keys, PKCS#10 Requests
 Summary(pl):	GUI do obs³ugi certyfikatów X509, kluczy RSA, ¿±dañ PKCS#10
 Name:		xca
-Version:	0.4.2
+Version:	0.4.5
 Release:	0.1
 Epoch:		1
 License:	BSD
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/xca/%{name}-%{version}.tar.gz
-# Source0-md5:	a0816d727a2590f4cbeba0a189651450
+# Source0-md5:	27a401c6e3ed1e406a602c2e7f8c3f4e
 Patch:		%{name}-makefile.patch
 URL:		http://www.hohnstaedt.de/xca.html
-BuildRequires:	db-cxx
+BuildRequires:	db-cxx-devel
 BuildRequires:	db-devel
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
 
 %description
 Graphical certification authority is an interface for managing RSA
@@ -38,7 +38,7 @@ Pokazywane jest drzewo certyfikatów.
 
 %prep
 %setup -q
-%patch -p1
+#%%patch -p1
 
 %build
 %configure \
@@ -61,3 +61,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS README doc/*.html
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/xca
+%{_datadir}/applications/xca*
+%{_datadir}/pixmaps/xca*
