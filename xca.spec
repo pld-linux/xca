@@ -1,8 +1,8 @@
 Summary:	A GUI for handling X509 certificates, RSA keys, PKCS#10 Requests
 Summary(pl):	GUI do obs³ugi certyfikatów X509, kluczy RSA, ¿±dañ PKCS#10
 Name:		xca
-Version:	0.3.0
-Release:	1
+Version:	0.3.2
+Release:	0
 Epoch:		1
 License:	BSD
 Group:		Applications/Communications
