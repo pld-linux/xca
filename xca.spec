@@ -1,16 +1,16 @@
-# TODO:
-# - add Categories to xca.desktop
+
 Summary:	A GUI for handling X509 certificates, RSA keys, PKCS#10 Requests
 Summary(pl):	GUI do obs³ugi certyfikatów X509, kluczy RSA, ¿±dañ PKCS#10
 Name:		xca
-Version:	0.4.6
+Version:	0.5.1
 Release:	0.1
 Epoch:		1
 License:	BSD
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/xca/%{name}-%{version}.tar.gz
-# Source0-md5:	3defe69788b9e0eb738f374143be6e12
+# Source0-md5:	24e0289c189b8db2f1f15a4ddac1b1c3
 Patch0:		%{name}-misc.patch
+Patch1:		%{name}-desktop.patch
 URL:		http://www.hohnstaedt.de/xca.html
 BuildRequires:	db-cxx-devel
 BuildRequires:	openssl-devel >= 0.9.7d
@@ -36,7 +36,8 @@ Pokazywane jest drzewo certyfikatów.
 
 %prep
 %setup -q
-%%patch0 -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
 
@@ -53,12 +54,12 @@ prefix="%{_prefix}" \
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/xca,%{_desktopdir}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/xca,%{_desktopdir},%{_mandir}/man1}
 
 %{__make} install \
 	destdir=$RPM_BUILD_ROOT
-	
-#mv $RPM_BUILD_ROOT%{_datadir}/applications/* $RPM_BUILD_ROOT%{_desktopdir}/
+
+install doc/xca.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -70,3 +71,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/xca
 %{_desktopdir}/xca*
 %{_pixmapsdir}/xca*
+%{_mandir}/man1/xca.1*
