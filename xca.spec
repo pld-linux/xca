@@ -13,7 +13,7 @@ Source0:	http://dl.sourceforge.net/xca/%{name}-%{version}.tar.gz
 Patch0:		%{name}-misc.patch
 URL:		http://www.hohnstaedt.de/xca.html
 BuildRequires:	db-cxx-devel
-BuildRequires:	openssl-devel >= 0.9.7c
+BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
