@@ -1,0 +1,12 @@
+diff -urN xca-0.6.4.orig/doc/Makefile xca-0.6.4/doc/Makefile
+--- xca-0.6.4.orig/doc/Makefile	2007-08-13 20:55:50.000000000 +0200
++++ xca-0.6.4/doc/Makefile	2008-03-11 10:14:57.000000000 +0100
+@@ -11,7 +11,7 @@
+ 	gzip -9 <$^ >$@
+ 
+ xca.html: xca.sgml
+-	$(LINUXDOC) -B html $<
++	sgml2html $<
+ 
+ install: xca.1.gz xca.html
+ 	install -m 755 -d $(destdir)$(prefix)/share/xca \
