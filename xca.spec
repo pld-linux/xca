@@ -58,7 +58,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/xca,%{_desktopdir},%{_mandir}/
 %{__make} install \
 	destdir=$RPM_BUILD_ROOT
 
-install doc/xca.1.gz $RPM_BUILD_ROOT%{_mandir}/man1
+gzip -dc doc/xca.1.gz >$RPM_BUILD_ROOT%{_mandir}/man1/xca.1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
