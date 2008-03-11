@@ -1,23 +1,20 @@
 Summary:	A GUI for handling X509 certificates, RSA keys, PKCS#10 Requests
 Summary(pl.UTF-8):	GUI do obsługi certyfikatów X509, kluczy RSA, żądań PKCS#10
 Name:		xca
-Version:	0.5.1
-Release:	0.2
+Version:	0.6.4
+Release:	1
 Epoch:		1
 License:	BSD
 Group:		Applications/Communications
 Source0:	http://dl.sourceforge.net/xca/%{name}-%{version}.tar.gz
-# Source0-md5:	24e0289c189b8db2f1f15a4ddac1b1c3
-Patch0:		%{name}-misc.patch
-Patch1:		%{name}-desktop.patch
-Patch2:		%{name}-qfont.patch
-Patch3:		%{name}-gcc4.patch
-Patch4:		%{name}-openssl.patch
-Patch5:		%{name}-db4.5.patch
+# Source0-md5:	f805a2e094436f976c7a4cda5980027e
+Patch0:		%{name}-build.patch
+Patch1:		%{name}-openssl.patch
+Patch2:		%{name}-doc.patch
 URL:		http://www.hohnstaedt.de/xca.html
-BuildRequires:	db-cxx-devel
 BuildRequires:	openssl-devel >= 0.9.7d
-BuildRequires:	qt-devel
+BuildRequires:	QtGui-devel >= 4.2.7
+BuildRequires:	sgml-tools
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -42,16 +39,12 @@ Pokazywane jest drzewo certyfikatów.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
 
 %build
-LDFLAGS="%{rpmldflags}" \
-CFLAGS="%{rpmcflags}" \
-CXXFLAGS="%{rpmcflags}" \
-FFLAGS="%{rpmcflags}" \
-%{?__cc:CC="%{__cc}"} \
+# Play non-standard build system:
+CFLAGS="%{rpmcxxflags}" \
+CXXFLAGS="%{rpmcxxflags}" \
+%{?__cc:CC="%{__cxx}"} \
 %{?__cxx:CXX="%{__cxx}"} \
 prefix="%{_prefix}" \
 ./configure 
@@ -65,16 +58,15 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/xca,%{_desktopdir},%{_mandir}/
 %{__make} install \
 	destdir=$RPM_BUILD_ROOT
 
-install doc/xca.1 $RPM_BUILD_ROOT%{_mandir}/man1
+install doc/xca.1.gz $RPM_BUILD_ROOT%{_mandir}/man1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS README doc/*.html
+%doc AUTHORS doc/*.html
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/xca
 %{_desktopdir}/xca*
-%{_pixmapsdir}/xca*
 %{_mandir}/man1/xca.1*
