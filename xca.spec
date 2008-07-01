@@ -14,7 +14,10 @@ Patch2:		%{name}-doc.patch
 URL:		http://www.hohnstaedt.de/xca.html
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	QtGui-devel >= 4.2.7
+BuildRequires:	qt4-build
+BuildRequires:	qt4-linguist
 BuildRequires:	sgml-tools
+BuildRequires:	sgml-tools-dtd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
