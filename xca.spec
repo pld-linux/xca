@@ -6,12 +6,13 @@ Release:	0.1
 Epoch:		1
 License:	BSD
 Group:		Applications/Communications
-Source0:	http://dl.sourceforge.net/xca/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/xca/%{name}-%{version}.tar.gz
 # Source0-md5:	ff6e23a0aac6a6d9d10b47d3f9856f1a
 Patch0:		%{name}-doc.patch
 URL:		http://www.hohnstaedt.de/xca.html
-BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	QtGui-devel >= 4.2.7
+BuildRequires:	libltdl-devel
+BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	qt4-build
 BuildRequires:	qt4-linguist
 BuildRequires:	sgml-tools
@@ -46,7 +47,7 @@ CXXFLAGS="%{rpmcxxflags}" \
 %{?__cc:CC="%{__cxx}"} \
 %{?__cxx:CXX="%{__cxx}"} \
 prefix="%{_prefix}" \
-./configure 
+./configure
 
 %{__make}
 
