@@ -59,9 +59,16 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/xca,%{_desktopdir},%{_mandir}/
 	destdir=$RPM_BUILD_ROOT
 
 gzip -dc doc/xca.1.gz >$RPM_BUILD_ROOT%{_mandir}/man1/xca.1
+%{__rm} $RPM_BUILD_ROOT%{_prefix}/man/man1/xca.1.gz
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+%update_mime_database
+
+%postun
+%update_mime_database
 
 %files
 %defattr(644,root,root,755)
@@ -70,3 +77,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/xca
 %{_desktopdir}/xca*
 %{_mandir}/man1/xca.1*
+%{_datadir}/mime/packages/xca.xml
