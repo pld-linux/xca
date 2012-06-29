@@ -10,11 +10,12 @@ Source0:	http://downloads.sourceforge.net/xca/%{name}-%{version}.tar.gz
 # Source0-md5:	5e08cf8a93f023b1b3836c203bd0a694
 Patch0:		%{name}-doc.patch
 URL:		http://www.hohnstaedt.de/xca.html
-BuildRequires:	QtGui-devel >= 4.2.7
+BuildRequires:	QtGui-devel >= 4.3.0
 BuildRequires:	libltdl-devel
-BuildRequires:	openssl-devel >= 0.9.7d
-BuildRequires:	qt4-build
-BuildRequires:	qt4-linguist
+BuildRequires:	openssl-devel >= 0.9.8
+BuildRequires:	pkgconfig
+BuildRequires:	qt4-build >= 4.3.0
+BuildRequires:	qt4-linguist >= 4.3.0
 BuildRequires:	sgml-tools
 BuildRequires:	sgml-tools-dtd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -49,7 +50,7 @@ CXXFLAGS="%{rpmcxxflags}" \
 prefix="%{_prefix}" \
 ./configure
 
-%{__make}
+%{__make} all
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -72,9 +73,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS doc/*.html
-%attr(755,root,root) %{_bindir}/*
+%doc AUTHORS COPYRIGHT changelog doc/*.html
+%attr(755,root,root) %{_bindir}/xca
 %{_datadir}/xca
-%{_desktopdir}/xca*
+%{_desktopdir}/xca.desktop*
 %{_mandir}/man1/xca.1*
 %{_datadir}/mime/packages/xca.xml
