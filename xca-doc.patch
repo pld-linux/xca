@@ -1,12 +1,11 @@
-diff -urN xca-0.8.1.orig/doc/Makefile xca-0.8.1/doc/Makefile
---- xca-0.8.1.orig/doc/Makefile	2007-08-13 20:55:50.000000000 +0200
-+++ xca-0.8.1/doc/Makefile	2008-03-11 10:14:57.000000000 +0100
-@@ -14,7 +14,7 @@
- 
- xca.html: xca.sgml
- 	echo '<h1>No documentation generated</h1>' > $@
--	$(LINUXDOC) -B html $<
-+	sgml2html $<
+--- xca-0.9.3/doc/Makefile.old	2012-05-12 11:37:14.000000000 +0200
++++ xca-0.9.3/doc/Makefile	2012-06-22 15:44:37.000000000 +0200
+@@ -18,7 +18,7 @@
+ 	echo 'The documentation for XCA can be viewed online at: <a href="http://xca.sourceforge.net/">http://xca.sourceforge.net/</a>.' > $@
+ 	test ! -f xca-doc.tgz || tar zxf xca-doc.tgz
+ 	@$(PRINT) "  DOC    [$(BASENAME)] $@"
+-	$(LINUXDOC) -B html $< >/dev/null
++	sgml2html $< >/dev/null
  
  install: xca.1.gz xca.html
  	install -m 755 -d $(destdir)$(docdir) \
