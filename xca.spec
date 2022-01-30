@@ -1,14 +1,15 @@
 Summary:	A GUI for handling X509 certificates, RSA keys, PKCS#10 Requests
 Summary(pl.UTF-8):	GUI do obsługi certyfikatów X509, kluczy RSA, żądań PKCS#10
 Name:		xca
-Version:	2.2.1
+Version:	2.4.0
 Release:	1
 Epoch:		1
 License:	BSD
 Group:		Applications/Communications
 Source0:	https://github.com/chris2511/xca/releases/download/RELEASE.%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	d9564be194d4e1e0b1139670f97a73d2
-Patch0:		oids.patch
+# Source0-md5:	c17d65a86134a69001d14c34729f46b5
+Patch0:		openssl-3.0.patch
+Patch1:		opt.patch
 URL:		https://hohnstaedt.de/xca/
 BuildRequires:	Qt5Sql-devel >= 5.14.0
 BuildRequires:	Qt5Widgets-devel >= 5.14.0
@@ -38,14 +39,28 @@ importowanie i eksportowanie kluczy i certyfikatów PEM DER PKCS8,
 podpisywanie i anulowanie PEM DER PKCS12 oraz wybór rozszerzeń x509v3.
 Pokazywane jest drzewo certyfikatów.
 
+%package -n bash-completion-xca
+Summary:	Bash completion for xca commands
+Summary(pl.UTF-8):	Bashowe uzupełnianie parametrów dla poleceń xca
+Group:		Applications/Shells
+Requires:	%{name} = %{version}-%{release}
+Requires:	bash-completion >= 2.0
+%{?noarchpackage}
+
+%description -n bash-completion-xca
+Bash completion for xca commands.
+
+%description -n bash-completion-xca -l pl.UTF-8
+Bashowe uzupełnianie parametrów dla poleceń xca.
+
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 
-%configure \
-	--disable-doc
+%configure
 
 %{__make} all
 
@@ -54,10 +69,10 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/xca,%{_desktopdir},%{_mandir}/man1}
 
 %{__make} install \
-	destdir=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT
 
-%{__make} -C doc ENABLE_DOC="" install \
-	destdir=$RPM_BUILD_ROOT
+%{__make} -C doc install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 gzip -dc doc/xca.1.gz >$RPM_BUILD_ROOT%{_mandir}/man1/xca.1
 %{__rm} $RPM_BUILD_ROOT%{_mandir}/man1/xca.1.gz
@@ -80,4 +95,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xca.1*
 %{_docdir}/xca
 %{_datadir}/mime/packages/xca.xml
+%{_iconsdir}/hicolor/*/*/*.png
 %{_pixmapsdir}/xca-32x32.xpm
+
+%files -n bash-completion-xca
+%defattr(644,root,root,755)
+%{bash_compdir}/xca

@@ -1,0 +1,21 @@
+diff -up xca-2.4.0/Local.mak.in._orig xca-2.4.0/Local.mak.in
+--- xca-2.4.0/Local.mak.in._orig	2021-05-07 22:40:29.000000000 +0200
++++ xca-2.4.0/Local.mak.in	2022-01-30 11:47:01.297908758 +0100
+@@ -7,7 +7,7 @@ export VERSION=@XCA_VERSION@
+ export HOST=@HOST@
+ 
+ CPPFLAGS+=-Wall -Wextra -DXCA_PREFIX=\"${xca_prefix}\" -DETC=\"@sysconfdir@\" -DDOCDIR=\"@docdir@\"
+-CFLAGS+=-O2 -ggdb -std=c++11 @CXXFLAGS@
++CFLAGS+=-std=c++11 @CXXFLAGS@
+ LIBS=@LIBS@
+ EXTRA_VERSION=@EXTRA_VERSION@
+ 
+@@ -19,7 +19,7 @@
+ HELPCOLL=@QT_HELPCOLL@
+ 
+ CC=@CXX@
+-STRIP=@STRIP@
++STRIP=:
+ WINDRES=@WINDRES@
+ DOCTOOL=@DOCTOOL@
+ MACDEPLOYQT=@MACDEPLOYQT@
