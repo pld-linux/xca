@@ -1,0 +1,12 @@
+diff -up xca-2.5.0/doc/CMakeLists.txt._orig xca-2.5.0/doc/CMakeLists.txt
+--- xca-2.5.0/doc/CMakeLists.txt._orig	2023-09-24 20:22:03.000000000 +0200
++++ xca-2.5.0/doc/CMakeLists.txt	2024-01-25 21:54:48.401170674 +0100
+@@ -99,7 +99,7 @@ if(SPHINX)
+       set(HTML_INSTALL_DEST .doc/html)
+       install(DIRECTORY ${D}/html DESTINATION .doc PATTERN ".*" EXCLUDE)
+     else()
+-      install(DIRECTORY ${D}/html/ DESTINATION ${CMAKE_INSTALL_DOCDIR}
++      install(DIRECTORY ${D}/html/ DESTINATION ${CMAKE_INSTALL_DOCDIR}/${CMAKE_PROJECT_NAME}
+           PATTERN ".*" EXCLUDE
+       )
+     endif()
