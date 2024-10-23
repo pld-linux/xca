@@ -1,13 +1,13 @@
 Summary:	A GUI for handling X509 certificates, RSA keys, PKCS#10 Requests
 Summary(pl.UTF-8):	GUI do obsługi certyfikatów X509, kluczy RSA, żądań PKCS#10
 Name:		xca
-Version:	2.6.0
+Version:	2.8.0
 Release:	1
 Epoch:		1
 License:	BSD
 Group:		Applications/Communications
 Source0:	https://github.com/chris2511/xca/releases/download/RELEASE.%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	be2ffca8a86d1ab564e5bd6f1040d383
+# Source0-md5:	15c5efc3822cc6075501ed73341bca76
 Patch0:		cmake.patch
 URL:		https://hohnstaedt.de/xca/
 BuildRequires:	Qt5Sql-devel >= 5.14.0
@@ -85,13 +85,12 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS COPYRIGHT changelog README.md
 %attr(755,root,root) %{_bindir}/xca
 %{_datadir}/xca
-%{_desktopdir}/xca.desktop*
+%{_desktopdir}/de.hohnstaedt.xca.desktop
 %{_mandir}/man1/xca.1*
 %{_docdir}/xca
 %{_datadir}/metainfo/de.hohnstaedt.xca.metainfo.xml
 %{_datadir}/mime/packages/xca.xml
 %{_iconsdir}/hicolor/*/*/*.png
-%{_pixmapsdir}/xca-32x32.xpm
 
 %files -n bash-completion-xca
 %defattr(644,root,root,755)
