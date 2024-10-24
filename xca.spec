@@ -10,15 +10,25 @@ Source0:	https://github.com/chris2511/xca/releases/download/RELEASE.%{version}/%
 # Source0-md5:	15c5efc3822cc6075501ed73341bca76
 Patch0:		cmake.patch
 URL:		https://hohnstaedt.de/xca/
+BuildRequires:	Qt5Core-devel >= 5.14.0
+BuildRequires:	Qt5Help-devel >= 5.14.0
 BuildRequires:	Qt5Sql-devel >= 5.14.0
 BuildRequires:	Qt5Widgets-devel >= 5.14.0
 BuildRequires:	cmake >= 3.16
-BuildRequires:	libltdl-devel
+# C++17
+BuildRequires:	libstdc++-devel >= 6:7
 BuildRequires:	openssl-devel >= 1.1.1
 BuildRequires:	pkgconfig
 BuildRequires:	qt5-build >= 5.14.0
 BuildRequires:	qt5-linguist >= 5.14.0
+BuildRequires:	rpm-build >= 4.6
+BuildRequires:	rpmbuild(find_lang) >= 1.37
+BuildRequires:	rpmbuild(macros) >= 1.673
 BuildRequires:	python3-Sphinx
+Requires:	Qt5Core >= 5.14.0
+Requires:	Qt5Help >= 5.14.0
+Requires:	Qt5Sql >= 5.14.0
+Requires:	Qt5Widgets >= 5.14.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -44,7 +54,7 @@ Summary(pl.UTF-8):	Bashowe uzupełnianie parametrów dla poleceń xca
 Group:		Applications/Shells
 Requires:	%{name} = %{version}-%{release}
 Requires:	bash-completion >= 2.0
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description -n bash-completion-xca
 Bash completion for xca commands.
@@ -57,12 +67,10 @@ Bashowe uzupełnianie parametrów dla poleceń xca.
 %patch0 -p1
 
 %build
+%cmake -B build \
+	-DQTFIXEDVERSION=Qt5
 
-install -d build
-cd build
-%cmake \
-	..
-%{__make}
+%{__make} -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -70,6 +78,8 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_datadir}/xca,%{_desktopdir},%{_mandir}/
 
 %{__make} -C build install/fast \
 	DESTDIR=$RPM_BUILD_ROOT
+
+%find_lang %{name} --with-qm
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -80,17 +90,22 @@ rm -rf $RPM_BUILD_ROOT
 %postun
 %update_mime_database
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS COPYRIGHT changelog README.md
 %attr(755,root,root) %{_bindir}/xca
-%{_datadir}/xca
+%{_datadir}/metainfo/de.hohnstaedt.xca.metainfo.xml
+%{_datadir}/mime/packages/xca.xml
+%dir %{_datadir}/xca
+%{_datadir}/xca/html
+%dir %{_datadir}/xca/i18n
+%{_datadir}/xca/*.txt
+%{_datadir}/xca/*.xca
 %{_desktopdir}/de.hohnstaedt.xca.desktop
 %{_mandir}/man1/xca.1*
 %{_docdir}/xca
-%{_datadir}/metainfo/de.hohnstaedt.xca.metainfo.xml
-%{_datadir}/mime/packages/xca.xml
-%{_iconsdir}/hicolor/*/*/*.png
+%{_iconsdir}/hicolor/*x*/apps/de.hohnstaedt.xca.png
+%{_iconsdir}/hicolor/*x*/mimetypes/x-xca-*.png
 
 %files -n bash-completion-xca
 %defattr(644,root,root,755)
