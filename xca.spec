@@ -2,7 +2,7 @@ Summary:	A GUI for handling X509 certificates, RSA keys, PKCS#10 Requests
 Summary(pl.UTF-8):	GUI do obsługi certyfikatów X509, kluczy RSA, żądań PKCS#10
 Name:		xca
 Version:	2.8.0
-Release:	1
+Release:	2
 Epoch:		1
 License:	BSD
 Group:		Applications/Communications
@@ -52,7 +52,7 @@ Pokazywane jest drzewo certyfikatów.
 Summary:	Bash completion for xca commands
 Summary(pl.UTF-8):	Bashowe uzupełnianie parametrów dla poleceń xca
 Group:		Applications/Shells
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	bash-completion >= 2.0
 BuildArch:	noarch
 
