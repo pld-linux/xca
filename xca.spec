@@ -1,13 +1,13 @@
 Summary:	A GUI for handling X509 certificates, RSA keys, PKCS#10 Requests
 Summary(pl.UTF-8):	GUI do obsługi certyfikatów X509, kluczy RSA, żądań PKCS#10
 Name:		xca
-Version:	2.8.0
-Release:	2
+Version:	2.9.0
+Release:	1
 Epoch:		1
 License:	BSD
 Group:		Applications/Communications
 Source0:	https://github.com/chris2511/xca/releases/download/RELEASE.%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	15c5efc3822cc6075501ed73341bca76
+# Source0-md5:	557f4037d1f8bb94701b9f50a6904dd1
 Patch0:		cmake.patch
 URL:		https://hohnstaedt.de/xca/
 BuildRequires:	Qt5Core-devel >= 5.14.0
@@ -19,12 +19,13 @@ BuildRequires:	cmake >= 3.16
 BuildRequires:	libstdc++-devel >= 6:7
 BuildRequires:	openssl-devel >= 1.1.1
 BuildRequires:	pkgconfig
+BuildRequires:	python3-Sphinx
 BuildRequires:	qt5-build >= 5.14.0
 BuildRequires:	qt5-linguist >= 5.14.0
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpmbuild(find_lang) >= 1.37
 BuildRequires:	rpmbuild(macros) >= 1.673
-BuildRequires:	python3-Sphinx
+BuildRequires:	sphinx-pdg
 Requires:	Qt5Core >= 5.14.0
 Requires:	Qt5Help >= 5.14.0
 Requires:	Qt5Sql >= 5.14.0
